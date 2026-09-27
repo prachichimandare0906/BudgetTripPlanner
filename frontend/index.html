@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TripWise - Budget Trip Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            ✈️ TripWise
+        </div>
+
+        <div class="nav-links">
+            <a href="#planner">Plan Trip</a>
+            <a href="#about">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-overlay">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    🌎 Smart Travel Planning
+                </span>
+
+                <h1>
+                    Plan More.<br>
+                    Spend Less.
+                </h1>
+
+                <p>
+                    Build your perfect trip and find the best
+                    plan within your budget.
+                </p>
+
+                <a href="#planner" class="hero-btn">
+                    Start Planning ✈️
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PLANNER -->
+    <section id="planner" class="planner-section">
+
+        <div class="section-heading">
+
+            <span>
+                ✨ TRIP PLANNER
+            </span>
+
+            <h2>
+                Build Your Trip
+            </h2>
+
+            <p>
+                Enter your travel details below
+            </p>
+
+        </div>
+
+
+        <!-- BASIC DETAILS -->
+        <div class="planner-card">
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+                    🧳
+                </div>
+
+                <div>
+
+                    <h3>
+                        Basic Trip Details
+                    </h3>
+
+                    <p>
+                        Tell us about your trip
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        📍 Starting Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="startLocation"
+                        placeholder="Example: Pune"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        👥 Number of People
+                    </label>
+
+                    <input
+                        type="number"
+                        id="people"
+                        min="1"
+                        value="2"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        💰 Total Budget (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="budget"
+                        min="1"
+                        placeholder="Example: 30000"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        📅 Number of Days
+                    </label>
+
+                    <input
+                        type="number"
+                        id="days"
+                        min="1"
+                        value="3"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        🛏️ People Per Room
+                    </label>
+
+                    <input
+                        type="number"
+                        id="peoplePerRoom"
+                        min="1"
+                        value="2"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+        <div class="destinations-wrapper">
+
+            <div class="destination-heading">
+
+                <div>
+
+                    <h3>
+                        📍 Destinations
+                    </h3>
+
+                    <p>
+                        Add destinations and their travel,
+                        hotel and activity costs.
+                    </p>
+
+                </div>
+
+
+                <!-- IMPORTANT -->
+                <button
+                    type="button"
+                    id="addDestinationBtn"
+                    class="add-btn"
+                    onclick="addDestination()"
+                >
+                    + Add Destination
+                </button>
+
+            </div>
+
+
+            <!-- IMPORTANT -->
+            <div
+                id="destinationsContainer"
+                class="destinations-container"
+            ></div>
+
+        </div>
+
+
+        <!-- OPTIMIZATION -->
+        <div class="input-card optimization-card">
+
+            <div class="optimization-heading">
+
+                <h3>
+                    ⚡ Optimization
+                </h3>
+
+                <p>
+                    The system will generate possible plans
+                    and use Dynamic Programming to find the best plan.
+                </p>
+
+            </div>
+
+
+            <div class="optimization-info">
+
+                <div class="optimization-item">
+
+                    <span>
+                        🎯
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Best Plan Near Budget
+                        </strong>
+
+                        <p>
+                            Finds the highest-cost valid trip
+                            without exceeding your budget.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORTANT -->
+            <button
+                type="button"
+                id="generateBtn"
+                class="generate-btn"
+                onclick="generatePlans()"
+            >
+                🚀 Generate All Plans
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+    <section
+        id="results"
+        class="results-section"
+    >
+
+        <div class="section-heading">
+
+            <span>
+                📊 RESULTS
+            </span>
+
+            <h2>
+                Your Trip Plans
+            </h2>
+
+            <p>
+                Compare all generated plans and view
+                the optimized plan.
+            </p>
+
+        </div>
+
+
+        <!-- BEST PLAN -->
+        <div
+            id="bestPlan"
+            class="best-plan-container"
+        ></div>
+
+
+        <!-- ALL PLANS -->
+        <div class="all-plans-section">
+
+            <div class="section-subheading">
+
+                <div>
+
+                    <h3>
+                        📋 All Generated Plans
+                    </h3>
+
+                    <p>
+                        Compare your available trip options.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultsContainer"
+                class="results-container"
+            ></div>
+
+        </div>
+
+
+        <!-- ALGORITHM -->
+        <div class="algorithm-card">
+
+            <div class="algorithm-icon">
+                🧠
+            </div>
+
+            <div>
+
+                <h3>
+                    Dynamic Programming Optimization
+                </h3>
+
+                <p>
+                    TripWise uses Dynamic Programming
+                    implemented in C++ to select the best
+                    trip plan without exceeding the available budget.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section
+        id="about"
+        class="about-section"
+    >
+
+        <div class="section-heading">
+
+            <span>
+                💡 ABOUT TRIPWISE
+            </span>
+
+            <h2>
+                Smart Planning Through Algorithms
+            </h2>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Budget Optimization
+                </h3>
+
+                <p>
+                    Find plans that make the best use
+                    of your available budget.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Dynamic Programming
+                </h3>
+
+                <p>
+                    The optimization algorithm is
+                    implemented in C++.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Multiple Destinations
+                </h3>
+
+                <p>
+                    Compare different destinations,
+                    hotels and activities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>
+                ✈️ TripWise
+            </h3>
+
+            <p>
+                Smart budget trip planning using
+                Dynamic Programming.
+            </p>
+
+            <p class="copyright">
+                © 2026 TripWise
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

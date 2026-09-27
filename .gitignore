@@ -1,0 +1,4 @@
+node_modules/
+backend/tripplanner.exe
+.env
+.DS_Store
