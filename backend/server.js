@@ -4,7 +4,7 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -581,10 +581,10 @@ app.post(
             // C++ executable
 
             const cppPath =
-                path.join(
-                    __dirname,
-                    "tripplanner.exe"
-                );
+    path.join(
+        __dirname,
+        "tripplanner"
+    );
 
 
             console.log(
@@ -808,6 +808,7 @@ app.post(
 
 app.listen(
     PORT,
+    "0.0.0.0",
     () => {
 
         console.log(
