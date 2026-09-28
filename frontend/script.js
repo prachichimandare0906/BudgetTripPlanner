@@ -1382,7 +1382,7 @@ async function generatePlans() {
 
         const response =
             await fetch(
-                "http://localhost:3000/optimize",
+              "https://budgettripplanner.onrender.com/optimize",
                 {
 
                     method:
